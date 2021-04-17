@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+}
+#todo-form{
+    padding: 24px;
+    box-shadow: 0 0 6px rgb(179, 176, 176);
+    border-radius: 8px;
+    margin: 48px 0 20px;
+}
+#todo-item{
+    width: 100%;
+    font-size: 24px;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+#Main-container{
+    width: 500px;
+    margin: 0% auto;
+}
+.todo-card{
+    padding: 24px;
+    box-shadow: 0 0 6px rgb(179, 176, 176);
+    border-radius: 8px;
+    margin: 16px 0px;
+    /* position: relative; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.todo-message{
+    margin: 0px;
+}
+.todo-time{
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    margin: 0%;
+}
+.remove-icon{
+    margin-left: 16px;
+}
