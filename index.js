@@ -1,14 +1,31 @@
-var todolistFormStorage =
-  localStorage.getItem("todo-list") === null
-    ? []
-    : JSON.parse(localStorage.getItem("todo-list"));
-for (var i = 0; i < todolistFormStorage.length; i++) {
-  renderTodoCard(
-    todolistFormStorage[i].message,
-    todolistFormStorage[i].createdTime,
-    todolistFormStorage[i].id 
-  );
+// var todolistFormStorage =
+//   localStorage.getItem("todo-list") === null
+//     ? []
+//     : JSON.parse(localStorage.getItem("todo-list"));
+// for (var i = 0; i < todolistFormStorage.length; i++) {
+//   renderTodoCard(
+//     todolistFormStorage[i].message,
+//     todolistFormStorage[i].createdTime,
+//     todolistFormStorage[i].id 
+//   );
+// }
+
+//Fetch data from backend!!
+var http = new XMLHttpRequest();
+http.open("GET","https://607c412c67e6530017573d5a.mockapi.io/todo", true);
+http.onreadystatechange = function(){
+  if(this.readyState === 4){
+     var todoList = JSON.parse(this.responseText);
+      for (var i = 0; i < todoList.length; i++) {
+        renderTodoCard(
+          todoList[i].message,
+          todoList[i].createdTime,
+          todoList[i].id 
+        );
+      }    
+  }
 }
+http.send();
 
 function removeFromLocalStroge(todoId){
   var todoList = localStorage.getItem("todo-list") === null ? [] : JSON.parse(localStorage.getItem("todo-list"));
@@ -105,12 +122,22 @@ todoInput.onkeyup = function (eObj) {
         message: message,
         createdTime: CurrentTime,
       };
-      var todolist =
-        localStorage.getItem("todo-list") === null
-          ? []
-          : JSON.parse(localStorage.getItem("todo-list"));
-      todolist.push(obj);
-      localStorage.setItem("todo-list", JSON.stringify(todolist));
+
+      var http =new XMLHttpRequest();
+      http.open("POST", "https://607c412c67e6530017573d5a.mockapi.io/todo", true);
+      http.onreadystatechange = function(){
+        if(this.readyState === 4){
+          alert("Ready")
+        }
+      }
+      http.send(JSON.stringify(obj));
+
+      // var todolist =
+      //   localStorage.getItem("todo-list") === null
+      //     ? []
+      //     : JSON.parse(localStorage.getItem("todo-list"));
+      // todolist.push(obj);
+      // localStorage.setItem("todo-list", JSON.stringify(todolist));
       console.log(obj);
     } else {
       alert("Please enter the message");
